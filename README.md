@@ -38,7 +38,7 @@ Linux cannot write data into `journaled hfs+` file system, so you also need to d
 diskutil list
 ```
 
-Then find your drive and partition identifier (like: disk\*s\*), and run:
+Then find your drive and HFS partition identifier (like: disk\*s\*), and run:
 
 ```
  diskutil disableJournal /dev/disk*s*
@@ -114,10 +114,10 @@ $ sudo umount /dev/sda2
 $ sudo nano /etc/fstab
 ```
 
-Add to the end of the file:
+Add to the end of the file (get <UUID> from running `blkid`:
 
 ```
-/dev/sda2 /media/time_machine hfsplus force,rw,user,noauto,x-systemd.automount 0 0
+UUID=<UUID> /media/time_machine hfsplus force,rw,user,auto 0 0
 ```
 
 Mount the drive
@@ -190,10 +190,10 @@ This means your Time Machine drive will show up in Finder’s sidebar.
 Next set up `afp.conf`
 
 ```
-$ sudo nano /usr/local/etc/afp.conf
+$ sudo vim /etc/netatalk/afp.conf
 ```
 
-add to the end
+Replace contents with:
 
 ```
 [Global]
@@ -232,7 +232,7 @@ Go to your router and assign a static IP to your Pi.
 
 ## 9. Connect to time machine
 Go to your Mac Finder you should see your Raspberry Pi there.
-Click on `Connect as` and insert your credentials (user: timemachine). If doesn't work, connect to your Pi through its static IP. Open Finder, then hit Command+K on your keyboard and insert:
+Click on `Connect as` and insert your credentials (pi user/password). If doesn't work, connect to your Pi through its static IP. Open Finder, then hit Command+K on your keyboard and insert:
 ```
 afp://<you Pi ip>
 ```
@@ -242,7 +242,7 @@ Go to `System Preferences > Time Machine` and clik on `Select Disk...`. Your Pi 
 
 ## Notice
 
-- Make sure that `erveryone` has permissions to read & write your disk drive.
+- Make sure that `everyone` has permissions to read & write your disk drive.
 
 - If `aptitude install ...` at the last of step 5 shows an eror like `Package 'libmysqlclient-dev' has no installation candidate`, please try `default-libmysqlclient-dev`.
 
