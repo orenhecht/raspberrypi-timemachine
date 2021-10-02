@@ -111,7 +111,7 @@ $ sudo umount /dev/sda2
 #### Mount drive using your editor of choice:
 
 ```
-$ sudo nano /etc/fstab
+$ sudo vim /etc/fstab
 ```
 
 Add to the end of the file (get <UUID> from running `blkid`:
@@ -157,7 +157,7 @@ whereis netatalk
 First let's set up `nsswitch.conf` by adding to the end of `hosts:          files mdns4_minimal [NOTFOUND=return] dns` line ` mdns4 mdns`.
 
 ```
-$ sudo nano /etc/nsswitch.conf
+$ sudo vim /etc/nsswitch.conf
 ```
 
 It should look like this:
@@ -207,7 +207,7 @@ Replace contents with:
 At last set `AppleVolumes.default` (might not be necessary)! I did it anyway...
 
 ```
-$ sudo nano /etc/netatalk/AppleVolumes.default
+$ sudo vim /etc/netatalk/AppleVolumes.default
 ```
 
 and add to the end of the file
